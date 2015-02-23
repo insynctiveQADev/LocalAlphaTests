@@ -39,7 +39,8 @@ public class PersonPickerPage extends Page {
         this.PAGE_URL = "http://alphaex.insynctiveapps.com/Insynctive.Components/Pickers/BasicPerson";
         this.PAGE_TITLE = "BasicPerson";
     }
-public void addTextToSearch (String text) {
+
+    public void addTextToSearch(String text) {
     pickerSearchInput.sendKeys(text);
 }
     public void checkFirstSearchResult (String text){
@@ -73,6 +74,6 @@ public void addTextToSearch (String text) {
     }
 
     public void checkifPickerWindowOpened(){
-        verifyElementIsPresent(pickerPopUpWindow);
+        verifyElementIsPresent(pickProcessedPersonBtn);
     }
 }

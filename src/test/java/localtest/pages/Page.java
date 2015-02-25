@@ -53,6 +53,7 @@ public class Page {
         return driver.getTitle();
     }
 
+
     public void clickElement(WebElement element) {
         element.click();
     }

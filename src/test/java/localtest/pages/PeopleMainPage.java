@@ -9,17 +9,20 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
 
+import static org.testng.AssertJUnit.assertEquals;
+
 /**
  * Created by Iakov Volf on 2/16/2015.
  */
-public class PeopleMainPage {
+public class PeopleMainPage extends Page {
+    //Active menu
+    @FindBy(xpath = "//*[@id='body_body_lnkQuery_BTC']/span")
+    public WebElement peopleSelectedActiveMenuElement;
     WebDriver driver;
-
     @FindBy(id = "body_body_mainTab_AT0")
     WebElement peopleListPageLink;
     @FindBy(id = "body_body_mainTab_T1")
     WebElement peopleDirectoryPageLink;
-
     //Column Headers
     @FindBy(id = "ctl00_ctl00_body_body_mainTab_grdListPeople_col1")
     WebElement peopleFirstNameColumnHeader;
@@ -33,7 +36,6 @@ public class PeopleMainPage {
     WebElement peopleStatusColumnHeader;
     @FindBy(id = "ctl00_ctl00_body_body_mainTab_grdListPeople_col6")
     WebElement peopleOpenColumnHeader;
-
     //Column Inputs
     @FindBy(id = "ctl00_ctl00_body_body_mainTab_grdListPeople_DXFREditorcol1_I")
     WebElement peopleFirstNameColumnInput;
@@ -47,8 +49,6 @@ public class PeopleMainPage {
     WebElement peopleStatusColumnInput;
     @FindBy(id = "ctl00_ctl00_body_body_mainTab_grdListPeople_DXDataRow0")
     WebElement peopleFirstDataRow;
-
-    //Active menu
     @FindBy(xpath = "//*[@id='body_body_popupQuery_CSD-1']/table/tbody/tr[1]")
     WebElement peopleActiveMenuActive;
     @FindBy(xpath = "//*[@id='body_body_popupQuery_CSD-1']/table/tbody/tr[2]")
@@ -62,23 +62,42 @@ public class PeopleMainPage {
     @FindBy(xpath = "//*[@id='body_body_popupQuery_CSD-1']/table/tbody/tr[6]")
     WebElement peopleActiveMenuInactive;
 
+    //upper menu
+    @FindBy(id = "body_body_lblIndicator_Active")
+    WebElement peopleMainActiveFilter;
+    @FindBy(id = "body_body_lblIndicator_PFLogin")
+    WebElement peopleMainPendinfFirstLoginFilter;
+    @FindBy(id = "body_body_lblIndicator_WSS")
+    WebElement peopleMainWithoutSelfServiceFilter;
 
-    public PeopleMainPage() {
+    public PeopleMainPage(WebDriver driver) {
 
-        this.driver = driver;
+        super(driver);
 
         //This initElements method will create all WebElements
 
         PageFactory.initElements(driver, this);
-
+        this.PAGE_URL = "https://alphaex.insynctiveapps.com/Insynctive.Hub/Protected/Invitations.aspx";
+        this.PAGE_TITLE = "Invitations";
     }
 
-    public static PeopleMainPage navigateTo(WebDriver driver) {
-        return PageFactory.initElements(driver,
-                PeopleMainPage.class);
+
+    public void clickToActiveFilter() {
+        clickElement(peopleMainActiveFilter);
     }
 
+    public void clickToPDFilter() {
+        clickElement(peopleMainPendinfFirstLoginFilter);
+    }
+
+    public void clickToWSSilter() {
+        clickElement(peopleMainWithoutSelfServiceFilter);
+    }
     public void waitUntilElementIsLoaded(WebElement element) throws IOException, InterruptedException {
         new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public void checkSelectedActiveElement(String text) {
+        assertEquals(text, peopleSelectedActiveMenuElement.getText());
     }
 }

@@ -36,11 +36,6 @@ public class LoginPage extends Page {
 
     }
 
-    public  LoginPage navigateTo(WebDriver driver) {
-        driver.get("https://alphaex.insynctiveapps.com");
-        return PageFactory.initElements(driver,
-                LoginPage.class);
-    }
 
     public  void login() throws Exception {
         waitUntilElementIsLoaded(loginButton);

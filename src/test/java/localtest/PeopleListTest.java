@@ -36,19 +36,29 @@ public class PeopleListTest  {
         this.driver.quit();
     }
 
+    @Test
+    public void filterActivePeopleFromShortcut_9778() throws Exception {
+
+        peopleMainPage.clickToActiveFilter();
+        peopleMainPage.waitUntilElementIsLoaded(peopleMainPage.peopleSelectedActiveMenuElement);
+        peopleMainPage.checkSelectedActiveElement("Active");
+
+    }
 
     @Test
-    public void test() throws Exception {
-        PeopleMainPage PeoplePage = new PeopleMainPage();
+    public void filterPendingFirstLoginFromShortcut_9779() throws Exception {
 
-
-
-    }
-    //@Test
-    public void testLoginFallure () throws Exception {
-
-
+        peopleMainPage.clickToPDFilter();
+        peopleMainPage.waitUntilElementIsLoaded(peopleMainPage.peopleSelectedActiveMenuElement);
+        peopleMainPage.checkSelectedActiveElement("Active Pending First Login");
     }
 
+    @Test
+    public void filterWithoutSelfServiceFromShortcut_9780() throws Exception {
+
+        peopleMainPage.clickToWSSilter();
+        peopleMainPage.waitUntilElementIsLoaded(peopleMainPage.peopleSelectedActiveMenuElement);
+        peopleMainPage.checkSelectedActiveElement("Active without Self Service");
+    }
 
 }

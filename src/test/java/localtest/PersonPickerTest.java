@@ -17,7 +17,7 @@ import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
 
-public class PersonPickerTest  {
+public class PersonPickerTest {
     public WebDriver driver;
     public WebDriverWait wait;
  PersonPickerPage personpickerpage;

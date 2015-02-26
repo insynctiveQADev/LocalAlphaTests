@@ -5,6 +5,7 @@ package localtest;
  */
 
 
+import localtest.pages.LoginPage;
 import localtest.pages.PeopleMainPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -21,13 +22,15 @@ public class PeopleListTest  {
     public WebDriver driver;
     public WebDriverWait wait;
     PeopleMainPage peopleMainPage;
-
+    LoginPage loginPage;
     @BeforeClass(alwaysRun = true)
     public void setup(){
         this.driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         peopleMainPage = PageFactory.initElements(driver, PeopleMainPage.class);
+        loginPage = PageFactory.initElements(driver, LoginPage.class);
+
     }
 
 
@@ -38,7 +41,7 @@ public class PeopleListTest  {
 
     @Test
     public void filterActivePeopleFromShortcut_9778() throws Exception {
-
+        loginPage.login();
         peopleMainPage.clickToActiveFilter();
         peopleMainPage.waitUntilElementIsLoaded(peopleMainPage.peopleSelectedActiveMenuElement);
         peopleMainPage.checkSelectedActiveElement("Active");
@@ -55,6 +58,14 @@ public class PeopleListTest  {
 
     @Test
     public void filterWithoutSelfServiceFromShortcut_9780() throws Exception {
+
+        peopleMainPage.clickToWSSilter();
+        peopleMainPage.waitUntilElementIsLoaded(peopleMainPage.peopleSelectedActiveMenuElement);
+        peopleMainPage.checkSelectedActiveElement("Active without Self Service");
+    }
+
+    @Test
+    public void filterActiveFromDropdown_9781() throws Exception {
 
         peopleMainPage.clickToWSSilter();
         peopleMainPage.waitUntilElementIsLoaded(peopleMainPage.peopleSelectedActiveMenuElement);

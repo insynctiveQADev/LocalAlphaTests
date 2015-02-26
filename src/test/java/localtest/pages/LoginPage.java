@@ -1,10 +1,7 @@
 package localtest.pages;
 
 import localtest.util.LoginData;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,6 +21,8 @@ public class LoginPage extends Page {
      WebElement loginPasswordField;
     @FindBy(id = "login_Login_CD")
      WebElement loginButton;
+    @FindBy(id = "login_Password")
+    WebElement loginPasswordRow;
 
     public LoginPage(WebDriver driver) {
 
@@ -38,9 +37,20 @@ public class LoginPage extends Page {
 
 
     public  void login() throws Exception {
-        waitUntilElementIsLoaded(loginButton);
-        fillLoginForm(new LoginData("bpetrovski@insynctive.com", "apple$$$2405"));
+        loadPage();
+        // waitUntilElementIsLoaded(loginButton);
+        setText_LoginField("ivolf@insynctive.com");
+        setText_PassField("123456");
         clickToLogin();
+    }
+
+    public void setText_LoginField(String text) {
+        loginUsernameField.sendKeys(text);
+        loginUsernameField.sendKeys(Keys.TAB);
+    }
+
+    public void setText_PassField(String text) {
+        loginPasswordField.sendKeys(text);
     }
 
     public  void clickToLogin() {
@@ -62,6 +72,9 @@ public class LoginPage extends Page {
         }
     }
 
+    public void clickToPassField() {
+        clickElement(loginPasswordField);
+    }
     public  boolean isLoggedIn(WebElement loginButton) {
         try {
             loginButton.isDisplayed();

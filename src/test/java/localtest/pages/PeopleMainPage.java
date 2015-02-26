@@ -49,6 +49,10 @@ public class PeopleMainPage extends Page {
     WebElement peopleStatusColumnInput;
     @FindBy(id = "ctl00_ctl00_body_body_mainTab_grdListPeople_DXDataRow0")
     WebElement peopleFirstDataRow;
+    @FindBy(xpath = "//tr[@id='ctl00_ctl00_body_body_mainTab_grdListPeople_DXDataRow0']/td[6]")
+    WebElement peopleFirstDataRowStatus;
+
+    //active dropdownmenu
     @FindBy(xpath = "//*[@id='body_body_popupQuery_CSD-1']/table/tbody/tr[1]")
     WebElement peopleActiveMenuActive;
     @FindBy(xpath = "//*[@id='body_body_popupQuery_CSD-1']/table/tbody/tr[2]")

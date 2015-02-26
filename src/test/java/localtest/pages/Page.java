@@ -10,8 +10,6 @@ import org.testng.Assert;
 import java.io.IOException;
 import java.util.NoSuchElementException;
 
-import static org.testng.AssertJUnit.assertEquals;
-
 /**
  * Abstract class representation of a Page in the UI. Page object pattern
  */
@@ -40,7 +38,7 @@ public class Page {
 
     public void loadPage() {
         driver.get(getPageUrl());
-        assertEquals(getTitle(), getPageTitle());
+        Assert.assertEquals(driver.getTitle(), getPageTitle());
     }
 
     public void setElementText(WebElement element, String text) {

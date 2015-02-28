@@ -9,16 +9,17 @@ import org.testng.Assert;
 
 import java.io.IOException;
 import java.util.NoSuchElementException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Abstract class representation of a Page in the UI. Page object pattern
  */
 public class Page {
 
+    public static final int SELENIUM_TIMEOUT_SEC = 10;
     public WebDriver driver;
     public String PAGE_URL;
     public String PAGE_TITLE;
-
     /*
      * Constructor injecting the WebDriver interface
      *
@@ -26,6 +27,26 @@ public class Page {
      */
     public Page(WebDriver driver) {
         this.driver = driver;
+    }
+
+    public static boolean exists(WebElement element) {
+        try {
+            element.isDisplayed();
+            return true;
+        } catch (org.openqa.selenium.NoSuchElementException ignored) {
+            return false;
+        }
+    }
+
+    public static boolean isElementDisplayedImmediately(WebDriver driver, WebElement element) {
+        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+        try {
+            return element.isDisplayed();
+        } catch (org.openqa.selenium.NoSuchElementException e) {
+            return false;
+        } finally {
+            driver.manage().timeouts().implicitlyWait(SELENIUM_TIMEOUT_SEC, TimeUnit.SECONDS);
+        }
     }
 
     public String getPageUrl() {
@@ -62,7 +83,6 @@ public class Page {
     public String getTitle() {
         return driver.getTitle();
     }
-
 
     public void clickElement(WebElement element) {
         element.click();

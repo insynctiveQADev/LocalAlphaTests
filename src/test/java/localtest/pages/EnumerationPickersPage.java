@@ -13,12 +13,16 @@ import static org.testng.Assert.assertEquals;
 
 public class EnumerationPickersPage extends Page {
 
+
+    public static final String TYPE_OF_EMPLOYMENT_KEY_Sel = "typeOfEmploymentKey";
+    public static final String typeOfEmploymentBlock_Sel = "popover750437";
+    public static final String EMPLOYMENT_CANCEL_Sel = "employmentCancel";
     // Type Of Employment Picker
-    @FindBy(id = "typeOfEmploymentKey")
+    @FindBy(id = TYPE_OF_EMPLOYMENT_KEY_Sel)
     WebElement typeOfEmploymentLink;
-    @FindBy(id = "popover750437")
+    @FindBy(id = typeOfEmploymentBlock_Sel)
     WebElement typeOfEmploymentBlock;
-    @FindBy(id = "id=employmentCancel")
+    @FindBy(id = EMPLOYMENT_CANCEL_Sel)
     WebElement typeOfEmploymentCloseImg;
     @FindBy(xpath = "//div[@id='popoverEmploymentContent']/div[@data-key='1']")
     WebElement typeOfEmploymentEmployeeOption;

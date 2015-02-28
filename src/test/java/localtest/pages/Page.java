@@ -1,5 +1,6 @@
 package localtest.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -104,6 +105,25 @@ public class Page {
         }catch(NoSuchElementException e){
             return false;
         }
+    }
+
+    protected void turnOffImplicitWaits() {
+        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+    }
+
+    protected void turnOnImplicitWaits() {
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    }
+
+    protected boolean isElementHiddenNow(By locator) {
+        turnOffImplicitWaits();
+        boolean result = false;
+        try {
+            result = ExpectedConditions.invisibilityOfElementLocated(locator).apply(driver);
+        } finally {
+            turnOnImplicitWaits();
+        }
+        return result;
     }
 
 }

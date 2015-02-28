@@ -17,6 +17,11 @@ public class EnumerationPickersPage extends Page {
     public static final String TYPE_OF_EMPLOYMENT_KEY_Sel = "typeOfEmploymentKey";
     public static final String typeOfEmploymentBlock_Sel = "popover750437";
     public static final String EMPLOYMENT_CANCEL_Sel = "employmentCancel";
+    public static final String PAYMENT_UNIT_BLOCK_SEL = "popover855230";
+    public static final String PAYMENT_SHEDULE_BLOCK_SEL = "popover79215";
+    public static final String FLSA_BLOCK_SEL = "popover477242";
+    private static final String FTPT_BLOCK_SEL = "popover29699";
+
     // Type Of Employment Picker
     @FindBy(id = TYPE_OF_EMPLOYMENT_KEY_Sel)
     WebElement typeOfEmploymentLink;
@@ -32,9 +37,9 @@ public class EnumerationPickersPage extends Page {
     // Payment Unit Picker
     @FindBy(id = "paymentUnitKey")
     WebElement paymentUnitLink;
-    @FindBy(id = "popover855230")
+    @FindBy(id = PAYMENT_UNIT_BLOCK_SEL)
     WebElement paymentUnitBlock;
-    @FindBy(id = "id=paymentUnitCancel")
+    @FindBy(id = "paymentUnitCancel")
     WebElement paymentUnitCloseImg;
     @FindBy(xpath = "//div[@id='popoverPaymentUnitContent']/div[@data-key='1']")
     WebElement paymentUnitHourOption;
@@ -48,9 +53,9 @@ public class EnumerationPickersPage extends Page {
     // Payment Schedule Picker
     @FindBy(id = "paymentScheduleKey")
     WebElement paymentScheduleLink;
-    @FindBy(id = "popover79215")
+    @FindBy(id = PAYMENT_SHEDULE_BLOCK_SEL)
     WebElement paymentScheduleBlock;
-    @FindBy(id = "id=paymentScheduleCancel")
+    @FindBy(id = "paymentScheduleCancel")
     WebElement paymentScheduleCloseImg;
     @FindBy(xpath = "//div[@id='popoverPaymentScheduleContent']/div[@data-key='1']")
     WebElement paymentScheduleWeeklyOption;
@@ -64,11 +69,28 @@ public class EnumerationPickersPage extends Page {
     @FindBy(id = "flsaKey")
     WebElement flsaLink;
 
+    @FindBy(id = FLSA_BLOCK_SEL)
+    WebElement flsaBlock;
+
+    @FindBy(id = "flsaCancel")
+    WebElement flsaCloseImg;
+
+    @FindBy(xpath = "//div[@id='popoverFLSAContent']/div[@data-key='1']")
+    WebElement flsaExemptOption;
+    @FindBy(xpath = "//div[@id='popoverFLSAContent']/div[@data-key='2']")
+    WebElement flsaNonExemptOption;
+
     //Full time/Part time Picker
     @FindBy(id = "fTimePTimeKey")
     WebElement fTimePTimeLink;
 
+    @FindBy(id = FTPT_BLOCK_SEL)
+    WebElement ftptBlock;
 
+    @FindBy(id = "ftptCancel")
+    WebElement fTimePTimeCloseImg;
+
+    // Constructor
     public EnumerationPickersPage(WebDriver driver) {
 
         super(driver);
@@ -79,8 +101,61 @@ public class EnumerationPickersPage extends Page {
         this.PAGE_URL = "https://alphaex.insynctiveapps.com/Insynctive.Components/Pickers/Enumeration";
         this.PAGE_TITLE = "";
     }
+//user actions
+
+    //open window
+    public void openTOEPickerWindow() {
+        clickElement(typeOfEmploymentLink);
+    }
+
+    public void openPaymentUnitPickerWindow() {
+        clickElement(paymentUnitLink);
+    }
+
+    public void openPaymentSchedulePickerWindow() {
+        clickElement(paymentScheduleLink);
+    }
+
+    public void openFlsaPickerWindow() {
+        clickElement(flsaLink);
+    }
+
+    public void openFtptPickerWindow() {
+        clickElement(fTimePTimeLink);
+    }
+
+    //close window
+    public void closeTOEPickerWindow() {
+        clickElement(typeOfEmploymentCloseImg);
+    }
+
+    public void closePaymentUnitPickerWindow() {
+        clickElement(paymentUnitCloseImg);
+    }
+
+    public void closePaymentSchedulePickerWindow() {
+        clickElement(paymentScheduleCloseImg);
+    }
+
+    public void closeFlsaPickerWindow() {
+        clickElement(flsaCloseImg);
+    }
+
+    public void closeFtptPickerWindow() {
+        clickElement(fTimePTimeCloseImg);
+    }
+
+    //pick elements
+    public void pickTypeOfEmploymentEmployeeOption() {
+        clickElement(typeOfEmploymentEmployeeOption);
+    }
+
+    public void pickTypeOfEmploymentContractorOption() {
+        clickElement(typeOfEmploymentContractorOption);
+    }
 
 
+    //Assertions
     public void checkTypeOfEmploymentPicked(String text) {
         assertEquals(text, typeOfEmploymentLink.getText());
     }
@@ -100,17 +175,36 @@ public class EnumerationPickersPage extends Page {
     public void checkPaymentSchedulePicked(String text) {
         assertEquals(text, paymentScheduleLink.getText());
     }
-    /*public PersonPickerPage navigateTo(WebDriver driver) {
-        driver.get(PAGE_URL);
-        assertEquals(PAGE_TITLE, driver.getTitle());
-        return PageFactory.initElements(driver,
-                PersonPickerPage.class);
 
-    }*/
-
-    public void openPickerWindow() {
-        clickElement(typeOfEmploymentLink);
+    //isPopUpClosed
+    public boolean isTypeOfEmploymentBlockHidden() {
+        return isElementHiddenNow(typeOfEmploymentBlock_Sel);
     }
+
+    public boolean isPaymentUnitBlockHidden() {
+        return isElementHiddenNow(PAYMENT_UNIT_BLOCK_SEL);
+    }
+
+    public boolean isFLSAPickerBlockHidden() {
+        return isElementHiddenNow(FLSA_BLOCK_SEL);
+    }
+
+    public boolean isTOEBlockOpened() {
+        return isElementDisplayedNow(typeOfEmploymentBlock);
+    }
+
+    public boolean isPaymentUnitBlockOpened() {
+        return isElementDisplayedNow(paymentUnitBlock);
+    }
+
+    public boolean isPaymentSheduleBlockOpened() {
+        return isElementDisplayedNow(paymentScheduleBlock);
+    }
+
+
+    //TODO public boolean isFTPTBlockHidden () {}
+
+
 
 
 }

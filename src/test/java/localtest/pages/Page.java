@@ -39,16 +39,7 @@ public class Page {
         }
     }
 
-    public static boolean isElementDisplayedImmediately(WebDriver driver, WebElement element) {
-        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-        try {
-            return element.isDisplayed();
-        } catch (org.openqa.selenium.NoSuchElementException e) {
-            return false;
-        } finally {
-            driver.manage().timeouts().implicitlyWait(SELENIUM_TIMEOUT_SEC, TimeUnit.SECONDS);
-        }
-    }
+
 
     public String getPageUrl() {
         return PAGE_URL;
@@ -115,15 +106,26 @@ public class Page {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
-    protected boolean isElementHiddenNow(By locator) {
+    protected boolean isElementHiddenNow(String locator) {
         turnOffImplicitWaits();
         boolean result = false;
         try {
-            result = ExpectedConditions.invisibilityOfElementLocated(locator).apply(driver);
+            result = ExpectedConditions.invisibilityOfElementLocated(By.id(locator)).apply(driver);
         } finally {
             turnOnImplicitWaits();
         }
         return result;
+    }
+
+    public boolean isElementDisplayedNow(WebElement element) {
+        turnOffImplicitWaits();
+        try {
+            return element.isDisplayed();
+        } catch (org.openqa.selenium.NoSuchElementException e) {
+            return false;
+        } finally {
+            turnOnImplicitWaits();
+        }
     }
 
 }

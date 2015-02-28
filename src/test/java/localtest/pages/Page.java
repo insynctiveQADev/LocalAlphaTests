@@ -41,10 +41,22 @@ public class Page {
         Assert.assertEquals(driver.getTitle(), getPageTitle());
     }
 
+    public void refreshPage() {
+        driver.navigate().refresh();
+    }
+
     public void setElementText(WebElement element, String text) {
         element.clear();
         element.sendKeys(text);
         Assert.assertEquals(element.getAttribute("value"), text);
+    }
+
+    public void getElementText(WebElement element, String text) {
+        Assert.assertEquals(element.getAttribute("value"), text);
+    }
+
+    public void checkIfElementVisible(WebElement element) {
+        Assert.assertTrue(element.isDisplayed(), "element isn't found");
     }
 
     public String getTitle() {

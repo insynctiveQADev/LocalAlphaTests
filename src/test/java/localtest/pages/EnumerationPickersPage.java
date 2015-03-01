@@ -15,7 +15,7 @@ public class EnumerationPickersPage extends Page {
 
 
     public static final String TYPE_OF_EMPLOYMENT_KEY_Sel = "typeOfEmploymentKey";
-    public static final String typeOfEmploymentBlock_Sel = "popover750437";
+    public static final String TYPE_OF_EMPLOYMENT_BLOCK_SEL = "popover750437";
     public static final String EMPLOYMENT_CANCEL_Sel = "employmentCancel";
     public static final String PAYMENT_UNIT_BLOCK_SEL = "popover855230";
     public static final String PAYMENT_SHEDULE_BLOCK_SEL = "popover79215";
@@ -25,7 +25,7 @@ public class EnumerationPickersPage extends Page {
     // Type Of Employment Picker
     @FindBy(id = TYPE_OF_EMPLOYMENT_KEY_Sel)
     WebElement typeOfEmploymentLink;
-    @FindBy(id = typeOfEmploymentBlock_Sel)
+    @FindBy(id = TYPE_OF_EMPLOYMENT_BLOCK_SEL)
     WebElement typeOfEmploymentBlock;
     @FindBy(id = EMPLOYMENT_CANCEL_Sel)
     WebElement typeOfEmploymentCloseImg;
@@ -178,7 +178,7 @@ public class EnumerationPickersPage extends Page {
 
     //isPopUpClosed
     public boolean isTypeOfEmploymentBlockHidden() {
-        return isElementHiddenNow(typeOfEmploymentBlock_Sel);
+        return isElementHiddenNow(TYPE_OF_EMPLOYMENT_BLOCK_SEL);
     }
 
     public boolean isPaymentUnitBlockHidden() {
@@ -189,20 +189,33 @@ public class EnumerationPickersPage extends Page {
         return isElementHiddenNow(FLSA_BLOCK_SEL);
     }
 
+    public boolean isFTPTBlockHidden() {
+        return isElementHiddenNow(FTPT_BLOCK_SEL);
+    }
+
+    //isPopUpOpened
     public boolean isTOEBlockOpened() {
-        return isElementDisplayedNow(typeOfEmploymentBlock);
+        return isElementPresentbySize(TYPE_OF_EMPLOYMENT_BLOCK_SEL);
     }
 
     public boolean isPaymentUnitBlockOpened() {
-        return isElementDisplayedNow(paymentUnitBlock);
+        return isElementPresentbySize(PAYMENT_UNIT_BLOCK_SEL);
     }
 
     public boolean isPaymentSheduleBlockOpened() {
-        return isElementDisplayedNow(paymentScheduleBlock);
+        return isElementPresentbySize(PAYMENT_SHEDULE_BLOCK_SEL);
+    }
+
+    public boolean isFLSAPickerBlockOpened() {
+        return isElementPresentbySize(FLSA_BLOCK_SEL);
+    }
+
+    public boolean isFTPTBlockOpened() {
+        return isElementPresentbySize(FTPT_BLOCK_SEL);
     }
 
 
-    //TODO public boolean isFTPTBlockHidden () {}
+
 
 
 

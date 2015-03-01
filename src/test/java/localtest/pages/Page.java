@@ -89,7 +89,7 @@ public class Page {
         select.selectByValue(value);
     }
 
-    public boolean verifyElementIsPresent(WebElement element){
+    public boolean isElementPresent(WebElement element) {
         try{
             element.getTagName();
             return true;
@@ -117,7 +117,12 @@ public class Page {
         return result;
     }
 
-    public boolean isElementDisplayedNow(WebElement element) {
+    public boolean isElementPresentbySize(String locator) {
+        return driver.findElements(By.id(locator)).size() > 0;
+    }
+
+
+    public boolean isElementDisplayedNowOLD(WebElement element) {
         turnOffImplicitWaits();
         try {
             return element.isDisplayed();

@@ -63,14 +63,6 @@ public class LoginPage extends Page {
         loginPasswordField.sendKeys(loginData.getPass());
     }
 
-    public  boolean exists(WebElement element) {
-        try {
-            element.isDisplayed();
-            return true;
-        } catch (NoSuchElementException ignored) {
-            return false;
-        }
-    }
 
     public void clickToPassField() {
         clickElement(loginPasswordField);

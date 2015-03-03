@@ -2,8 +2,16 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Tests" verbose="5">
   <test name="Test1">
+      <groups>
+          <run>
+              <include name="checkPaymentScheduleOption"/>
+              <include name="checkTypeOfEmployeeOption"/>
+              <include name="checkPaymentUnitOption"/>
+          </run>
+      </groups>
     <classes>
-      <class name="localtest.PersonPickerTest"/>
+        <class name="localtest.EnumerationPickersTest"/>
     </classes>
+
   </test>  
 </suite>

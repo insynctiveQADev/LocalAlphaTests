@@ -20,7 +20,7 @@ public class EnumerationPickersPage extends Page {
     public static final String PAYMENT_UNIT_BLOCK_SEL = "popover855230";
     public static final String PAYMENT_SHEDULE_BLOCK_SEL = "popover79215";
     public static final String FLSA_BLOCK_SEL = "popover477242";
-    private static final String FTPT_BLOCK_SEL = "popover29699";
+    private static final String FTPT_BLOCK_SEL = "popover891224";
 
     // Type Of Employment Picker
     @FindBy(id = TYPE_OF_EMPLOYMENT_KEY_Sel)
@@ -111,7 +111,6 @@ public class EnumerationPickersPage extends Page {
     public void openPaymentUnitPickerWindow() {
         clickElement(paymentUnitLink);
     }
-
     public void openPaymentSchedulePickerWindow() {
         clickElement(paymentScheduleLink);
     }
@@ -145,15 +144,6 @@ public class EnumerationPickersPage extends Page {
         clickElement(fTimePTimeCloseImg);
     }
 
-    //pick elements
-    public void pickTypeOfEmploymentEmployeeOption() {
-        clickElement(typeOfEmploymentEmployeeOption);
-    }
-
-    public void pickTypeOfEmploymentContractorOption() {
-        clickElement(typeOfEmploymentContractorOption);
-    }
-
 
     //Assertions
     public void checkTypeOfEmploymentPicked(String text) {
@@ -179,6 +169,10 @@ public class EnumerationPickersPage extends Page {
     //isPopUpClosed
     public boolean isTypeOfEmploymentBlockHidden() {
         return isElementHiddenNow(TYPE_OF_EMPLOYMENT_BLOCK_SEL);
+    }
+
+    public boolean isPaymentScheduletBlockHidden() {
+        return isElementHiddenNow(PAYMENT_SHEDULE_BLOCK_SEL);
     }
 
     public boolean isPaymentUnitBlockHidden() {
@@ -210,14 +204,46 @@ public class EnumerationPickersPage extends Page {
         return isElementPresentbySize(FLSA_BLOCK_SEL);
     }
 
+
     public boolean isFTPTBlockOpened() {
         return isElementPresentbySize(FTPT_BLOCK_SEL);
     }
 
+    //pick elements
+    public void pickTypeOfEmploymentEmployeeOption() {
+        clickElement(typeOfEmploymentEmployeeOption);
+    }
+
+    public void pickTypeOfEmploymentContractorOption() {
+        clickElement(typeOfEmploymentContractorOption);
+    }
+
+    public void pickPaymentUnitHourOption() {
+        clickElement(paymentUnitHourOption);
+    }
+
+    public void pickPaymentUnitWeekOption() {
+        clickElement(paymentUnitWeekOption);
+    }
+
+    public void pickPaymentUnitMonthOption() {
+        clickElement(paymentUnitMonthOption);
+    }
+
+    public void pickPaymentUnitYearOption() {
+        clickElement(paymentUnitYearOption);
+    }
 
 
+    public void pickPaymentScheduleMonthlyOption() {
+        clickElement(paymentScheduleMonthlyOption);
+    }
 
+    public void pickPaymentScheduleTwiceAMonthOption() {
+        clickElement(paymentScheduleTwiceAMonthOption);
+    }
 
-
-
+    public void pickPaymentScheduleWeeklyOption() {
+        clickElement(paymentScheduleWeeklyOption);
+    }
 }

@@ -74,6 +74,6 @@ public class PersonPickerPage extends Page {
     }
 
     public void checkifPickerWindowOpened(){
-        isElementDisplayedNow(pickProcessedPersonBtn);
+        isElementDisplayedNowOLD(pickProcessedPersonBtn);
     }
 }

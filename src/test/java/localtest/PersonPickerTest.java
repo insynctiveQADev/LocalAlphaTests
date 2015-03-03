@@ -65,7 +65,7 @@ personpickerpage.checkProceededPerson("Processed Person");
         personpickerpage.loadPage();
         personpickerpage.clickPersonLink();
         personpickerpage.addTextToSearch("mary po");
-        personpickerpage.checkFirstSearchResult("MP Mary Po");
+        personpickerpage.checkFirstSearchResult("MP \n Mary Po");
 
     }
 
